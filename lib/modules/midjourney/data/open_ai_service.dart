@@ -1,11 +1,30 @@
 import 'dart:convert';
 
 import 'package:dio/dio.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
 class OpenAIService {
   final String _apiKey = 'SUA_CHAVE_DE_API';
   final Dio _dio = Dio();
+
+  Future<void> setupRemoteConfig() async {
+    final remoteConfig = FirebaseRemoteConfig.instance;
+
+    // Configura as definições padrão (caso deseje)
+    await remoteConfig.setDefaults({
+      'api_key': 'default_value',
+    });
+
+    // Sincroniza o Remote Config com o servidor Firebase
+    await remoteConfig.fetchAndActivate();
+
+    // Busca o valor da API key
+    String apiKey = remoteConfig.getString('api_key');
+    print("API Key: $apiKey");
+
+    // Agora você pode usar essa apiKey no seu app
+  }
 
   Future<String> generateImage(String prompt) async {
     try {
