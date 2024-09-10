@@ -8,26 +8,24 @@ class OpenAIService {
   final String _apiKey = 'SUA_CHAVE_DE_API';
   final Dio _dio = Dio();
 
-  Future<void> setupRemoteConfig() async {
+  Future<String> setupRemoteConfig() async {
     final remoteConfig = FirebaseRemoteConfig.instance;
 
-    // Configura as definições padrão (caso deseje)
     await remoteConfig.setDefaults({
       'api_key': 'default_value',
     });
 
-    // Sincroniza o Remote Config com o servidor Firebase
     await remoteConfig.fetchAndActivate();
 
-    // Busca o valor da API key
     String apiKey = remoteConfig.getString('api_key');
-    print("API Key: $apiKey");
 
-    // Agora você pode usar essa apiKey no seu app
+    return apiKey;
   }
 
   Future<String> generateImage(String prompt) async {
     try {
+      final apiKey = await setupRemoteConfig();
+
       Response response = await _dio.post(
         'https://api.openai.com/v1/images/generations',
         data: jsonEncode(
@@ -39,7 +37,7 @@ class OpenAIService {
         ),
         options: Options(
           headers: {
-            'Authorization': 'Bearer $_apiKey',
+            'Authorization': 'Bearer $apiKey',
             'Content-Type': 'application/json',
           },
         ),
