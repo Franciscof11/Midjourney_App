@@ -1,7 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:midjourney_app/firebase_options.dart';
-import 'package:midjourney_app/modules/midjourney/data/open_ai_service.dart';
+import 'package:midjourney_app/modules/midjourney/presentation/cubit/image_ai_cubit.dart';
+import 'package:midjourney_app/modules/midjourney/presentation/home_page/home_page.dart';
+
+import 'modules/midjourney/data/open_ai_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,18 +22,12 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final openAIService = OpenAIService();
     return MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: GestureDetector(
-            onTap: () async {
-              final rep = OpenAIService();
-
-              await rep.setupRemoteConfig();
-            },
-            child: const Text('Hello World!'),
-          ),
-        ),
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        create: (context) => ImageAiCubit(openAIService: openAIService),
+        child: const HomePage(),
       ),
     );
   }

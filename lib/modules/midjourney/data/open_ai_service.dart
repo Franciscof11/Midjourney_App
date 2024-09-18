@@ -5,7 +5,6 @@ import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:flutter/material.dart';
 
 class OpenAIService {
-  final String _apiKey = 'SUA_CHAVE_DE_API';
   final Dio _dio = Dio();
 
   Future<String> setupRemoteConfig() async {
