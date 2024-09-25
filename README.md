@@ -16,7 +16,7 @@
    <h2>About 📖</h2>
    
    <p>
-    Midjourney App é uma ferramenta de criação de imagens via prompt, que é nada mais que uma instrução para a inteligência artificial possa gerar a imagem pedida. Utiliza o api oficial do ChatGPT com features como remote config do Firebase para maior segurança de armazenamento da Api Key dentro do aplicativo.
+    Midjourney App é uma ferramenta de criação de imagens via prompt, que consiste em uma instrução para que a inteligência artificial possa gerar a imagem pedida. Utiliza o api oficial do ChatGPT com features como remote config do Firebase para maior segurança de armazenamento da Api Key dentro do aplicativo.
    </p>
 
 ---
