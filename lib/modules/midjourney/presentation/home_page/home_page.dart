@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:midjourney_app/modules/midjourney/presentation/cubit/image_ai_cubit.dart';
+import 'package:midjourney_app/modules/midjourney/presentation/image_page/image_page.dart';
 import 'package:midjourney_app/modules/midjourney/presentation/widgets/const_colors.dart';
 import 'package:midjourney_app/modules/midjourney/presentation/widgets/custom_text_form_field.dart';
 
@@ -13,6 +16,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   final promptTextController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,7 +105,6 @@ class _HomePageState extends State<HomePage> {
                   ),
                 ),
               ),
-
               const SizedBox(height: 65),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -113,8 +116,15 @@ class _HomePageState extends State<HomePage> {
                   final formValid = formKey.currentState?.validate() ?? false;
 
                   if (formValid) {
-                    print('aha');
-                    /*    context.read<ImageAiCubit>().generateImage(promptTextController.text); */
+                    context.read<ImageAiCubit>().generateImage(promptTextController.text);
+
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ImagePage(prompt: promptTextController.text),
+                        ));
+
+                    promptTextController.clear();
                   }
                 },
                 child: Text(

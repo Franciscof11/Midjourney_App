@@ -23,11 +23,11 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final openAIService = OpenAIService();
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: BlocProvider(
-        create: (context) => ImageAiCubit(openAIService: openAIService),
-        child: const HomePage(),
+    return BlocProvider(
+      create: (context) => ImageAiCubit(openAIService: openAIService),
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: HomePage(),
       ),
     );
   }

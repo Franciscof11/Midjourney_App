@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:midjourney_app/modules/midjourney/data/open_ai_service.dart';
 
@@ -18,6 +19,8 @@ class ImageAiCubit extends Cubit<ImageAiState> {
       emit(const ImageAiState.loading());
 
       final imageUrl = await _openAIService.generateImage(prompt);
+
+      debugPrint(imageUrl);
 
       emit(ImageAiState.data(imageUrl: imageUrl));
     } catch (e) {
