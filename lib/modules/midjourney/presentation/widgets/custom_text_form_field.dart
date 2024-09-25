@@ -24,8 +24,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLines: null,
       controller: widget.controller,
-      style: GoogleFonts.montserrat(
+      style: GoogleFonts.raleway(
         fontSize: 16,
         color: Colors.black87,
         fontWeight: FontWeight.w500,
@@ -43,37 +44,33 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         return null;
       },
       cursorColor: Colors.grey,
+      cursorErrorColor: Colors.grey,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.symmetric(vertical: 23, horizontal: 15),
         suffixIconColor: Colors.grey[500],
-        labelStyle: TextStyle(
+        labelStyle: GoogleFonts.raleway(
           fontSize: 16,
           color: Colors.grey[700],
           fontWeight: FontWeight.w600,
         ),
+        errorStyle: GoogleFonts.raleway(
+          fontSize: 13,
+          fontWeight: FontWeight.w600,
+        ),
         floatingLabelBehavior: FloatingLabelBehavior.never,
         fillColor: Colors.grey[200],
-        filled: true,
+        filled: false,
         border: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(
-            color: Colors.white,
-            width: 1,
-          ),
+          borderSide: BorderSide.none,
         ),
         enabledBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(
-            color: Colors.grey,
-            width: 0.5,
-          ),
+          borderSide: BorderSide.none,
         ),
         focusedBorder: const OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(8)),
-          borderSide: BorderSide(
-            color: Colors.black38,
-            width: 2.5,
-          ),
+          borderSide: BorderSide.none,
         ),
         labelText: widget.label,
         suffixIcon: widget.sufixIcon,

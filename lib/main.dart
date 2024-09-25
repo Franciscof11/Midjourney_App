@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:midjourney_app/firebase_options.dart';
 import 'package:midjourney_app/modules/midjourney/presentation/cubit/image_ai_cubit.dart';
-import 'package:midjourney_app/modules/midjourney/presentation/initial_page/initial_page.dart';
+import 'package:midjourney_app/modules/midjourney/presentation/home_page/home_page.dart';
 
 import 'modules/midjourney/data/open_ai_service.dart';
 
@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: BlocProvider(
         create: (context) => ImageAiCubit(openAIService: openAIService),
-        child: const InitialPage(),
+        child: const HomePage(),
       ),
     );
   }
