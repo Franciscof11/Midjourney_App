@@ -64,23 +64,6 @@ class _ImagePageState extends State<ImagePage> {
                         fixedSize: const Size(250, 60),
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                       ),
-                      onPressed: () {},
-                      child: Text(
-                        'Baixar Imagem',
-                        style: GoogleFonts.raleway(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 20),
-                    ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: mainGreen,
-                        fixedSize: const Size(250, 60),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      ),
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
                       },
